@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<style type="text/css">
+			.mui-input-row{
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">提交结果</h1>
+		</header>
+		<div class="mui-content">
+			<!--成功-->
+			<div style="display: none;">
+				<div class="loan-result img-box-respons">
+					<img src="images/s.png" alt="" />
+				</div>
+				<div class="mui-text-center" style="font-size: 18px;    line-height: 40px;">申请提现成功！</div>
+			</div>
+			
+			<!--失败-->
+			<div>
+				<div class="loan-result img-box-respons">
+					<img src="images/f.png" alt="" />
+				</div>
+				<div class="mui-text-center" >
+					<p style="font-size: 18px;margin:0;line-height: 40px;">申请提现失败！</p>
+					<span style="font-size: 11px;">失败原因：账户余额没有达到规定金额50元以上，不能提现</span>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false
+			});
+		</script>
+	</body>
+</html>

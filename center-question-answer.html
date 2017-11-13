@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">问答详情</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-list-unstyled center-ul">
+				<li class="center-list">
+					<a href="javascript:;" id="edit"><p><b class="q-mes"></b>6.6.5版本主要更新内容</p></a>
+				</li>
+				<li class="center-list">
+					<a href="javascript:;" style="height: auto;line-height: 1.8em;font-size: 14px;">
+						<p style="padding-left: 28px;position: relative;">
+							<b class="answer" style="position: absolute;left: 0;top: 0;"></b>
+							你可以为该词条创建新的义项使其成为多义词。义项指的就是相同词条名下每一个不同概念意义事物，如“苹果”词条既可以表示水果，也可以表示苹果公司，这两个不同含义的事物就是它的两个义项。
+						</p>
+					</a>
+				</li>
+			</div>
+			<div class="accounting-detail">
+				<div class="title">
+					相关问答
+				</div>
+			</div>
+			<ul class="mui-list-unstyled center-ul">
+				<li class="center-list">
+					<a href="javascript:;" id="answer"><p><b class="q-mes"></b>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+				<li class="center-list">
+					<a href="javascript:;"><p><b class="q-mes"></b>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+//			问题详情
+			document.getElementById("edit").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerPageEdit',
+					url : 'center-page-edit.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+//			问答
+			document.getElementById("answer").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerQuestionAnswer',
+					url : 'center-question-answer.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,327 @@
+{
+	"index-account-stages.html": {
+		"href": "index-account-stages.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/stages.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-account-credit.html": {
+		"href": "index-account-credit.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/credit.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-account-loan.html": {
+		"href": "index-account-loan.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/iloan.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-account-kill.html": {
+		"href": "index-account-kill.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/kill.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"loan-detail.html": {
+		"href": "loan-detail.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/detail.png",
+			"images/deatil1.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-account.html": {
+		"href": "index-account.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/h1.jpg",
+			"images/logoSmall.jpg",
+			"images/hicon1.png",
+			"images/hicon2.png",
+			"images/hicon3.png",
+			"images/hicon4.png",
+			"images/brankLogo.jpg"
+		],
+		"refer": [
+			"index-account-stages.html",
+			"index-account-credit.html",
+			"index-account-loan.html",
+			"index-account-kill.html",
+			"loan-detail.html"
+		],
+		"priority": 0
+	},
+	"accounting-add.html": {
+		"href": "accounting-add.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/mui.picker.css",
+			"css/mui.poppicker.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"js/mui.picker.js",
+			"js/mui.poppicker.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-accounting.html": {
+		"href": "index-accounting.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/repayment.png"
+		],
+		"refer": [
+			"accounting-add.html"
+		],
+		"priority": 0
+	},
+	"center-about.html": {
+		"href": "center-about.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"reg2.html": {
+		"href": "reg2.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"reg.html"
+		],
+		"priority": 0
+	},
+	"reg1.html": {
+		"href": "reg1.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"reg2.html"
+		],
+		"priority": 0
+	},
+	"reg.html": {
+		"href": "reg.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"reg1.html"
+		],
+		"priority": 0
+	},
+	"login.html": {
+		"href": "login.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/logo.png"
+		],
+		"refer": [
+			"reg.html"
+		],
+		"priority": 0
+	},
+	"invitation.html": {
+		"href": "invitation.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/invitation.png",
+			"images/point.png",
+			"images/two.png"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-loan-friend.html": {
+		"href": "index-loan-friend.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/20150502174823_3PMmR.thumb.224_0.jpeg"
+		],
+		"refer": [
+			"invitation.html"
+		],
+		"priority": 0
+	},
+	"forget-password.html": {
+		"href": "forget-password.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"loan-withdrawals.html": {
+		"href": "loan-withdrawals.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"present-record.html": {
+		"href": "present-record.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"index-loan-return.html": {
+		"href": "index-loan-return.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/20150502174823_3PMmR.thumb.224_0.jpeg",
+			"images/b1.png",
+			"images/b2.png",
+			"images/b3.png",
+			"images/b4.png",
+			"images/gicon6.png",
+			"images/gicon5.png",
+			"images/gicon4.png",
+			"images/gicon3.png",
+			"images/gicon2.png",
+			"images/gicon1.png"
+		],
+		"refer": [
+			"loan-withdrawals.html",
+			"present-record.html"
+		],
+		"priority": 0
+	},
+	"center-messages.html": {
+		"href": "center-messages.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"center-page-edit.html": {
+		"href": "center-page-edit.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [],
+		"priority": 0
+	},
+	"center-question-answer.html": {
+		"href": "center-question-answer.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"center-page-edit.html",
+			"center-question-answer.html"
+		],
+		"priority": 0
+	},
+	"center-question.html": {
+		"href": "center-question.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"center-page-edit.html",
+			"center-question-answer.html"
+		],
+		"priority": 0
+	},
+	"index-loan.html": {
+		"href": "index-loan.html",
+		"resources": [
+			"css/mui.min.css",
+			"css/style.css",
+			"js/mui.min.js",
+			"images/20150502174823_3PMmR.thumb.224_0.jpeg"
+		],
+		"refer": [
+			"center-about.html",
+			"login.html",
+			"index-loan-friend.html",
+			"forget-password.html",
+			"index-loan-return.html",
+			"center-messages.html",
+			"center-question.html"
+		],
+		"priority": 0
+	},
+	"index.html": {
+		"href": "index.html",
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"index-loan.html"
+		],
+		"refer": [
+			"index-account.html",
+			"index-accounting.html",
+			"index-loan.html"
+		],
+		"priority": 0
+	}
+}

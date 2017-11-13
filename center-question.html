@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">常见问题</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="accounting-detail">
+				<div class="title">
+					常见问题
+				</div>
+			</div>
+			<ul class="mui-list-unstyled center-ul">
+				<li class="center-list">
+					<a href="javascript:;" id="edit"><p>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+				<li class="center-list">
+					<a href="javascript:;"><p>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+			</ul>
+			<div class="accounting-detail">
+				<div class="title">
+					借款问答
+				</div>
+			</div>
+			<ul class="mui-list-unstyled center-ul">
+				<li class="center-list">
+					<a href="javascript:;" id="answer"><p><b class="q-mes"></b>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+				<li class="center-list">
+					<a href="javascript:;"><p><b class="q-mes"></b>6.6.5版本主要更新内容<span class="mui-pull-right">&gt;</span></p></a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+//			问题详情
+			document.getElementById("edit").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerPageEdit',
+					url : 'center-page-edit.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+//			问答
+			document.getElementById("answer").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerQuestionAnswer',
+					url : 'center-question-answer.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

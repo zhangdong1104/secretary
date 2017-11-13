@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style >
+			.rechagre-btn-box{
+				background-color: transparent;
+				padding: 20px 0 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">请输入手机</h1>
+		</header>
+		<div class="mui-content">
+		    <form action="" class="mui-input-group mine-balance-recharge-box login-form">
+		    	<div class="mui-input-row">
+		    		<label for="">手机号</label>
+		    		<input type="text" class="mui-input-clear" placeholder="请输入手机号"/>	
+		    	</div>
+		    	<div class="rechagre-btn-box">
+		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" type="button" id="register1">获取验证码</button>
+		    	</div>
+		    	<div class="mui-input-row mui-checkbox mui-text-center chkbox" style="border-bottom: none;">
+		    		<input name="checkbox1" value="Item 1" type="checkbox">
+				  	<label><b class="cbox"></b><a href="javascript:;">我已阅读并同意《贷款平台用户协议》</a></label>
+				</div>
+		    </form>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//新用户注册
+			document.getElementById("register1").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'userRegister1',
+					url : 'reg1.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

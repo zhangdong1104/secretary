@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.center-ul{
+				margin-top: 10px;
+			}
+			header.mui-bar{
+				background-color: transparent;
+				box-shadow:none;
+			}
+			.img-box-respons{
+				position: relative;
+				
+			}
+			.mui-row{
+				position: absolute;
+				bottom: 0;
+				padding: 50px 0 50px 15px ;
+			}
+			.mui-col-xs-7{
+				color: #FFFFFF;
+			}
+			.mui-col-xs-7 .mui-btn{
+				background-color: transparent;
+				border: 1px solid #FFFFFF;
+				border-radius: 0;
+				color: #FFFFFF;
+				font-size: 17px;
+			}
+			.mui-col-xs-7 span{
+				font-size: 15px;
+			}
+			.mui-col-xs-7 p{
+				font-size: 11px;
+				margin: 18px 0;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-pull-right">
+		    	<img src="images/point.png" class="more" alt="" />
+		    </a>
+		</header>
+		<div id="two" class="img-box-respons">
+			<img src="images/invitation.png" alt="" />
+			<div class="mui-row" style="width: 100%;">
+				<div class="mui-col-xs-5">
+					<div class="two-img"><img src="images/two.png" alt="" /></div>
+				</div>
+				<div class="mui-col-xs-7">
+					<span>截图发送给其他老哥</span>
+					<p>或者点击右上角生成你的专属邀请链接</p>
+					<a href="javascript:;" class="mui-btn">立即赚取饭钱</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			window.onload = function(){  
+	            var h=window.screen.height;
+				var box=document.getElementById("two");
+				box.style.height=(h-20)+"px";
+				alert(h)
+	      }
+		</script>
+	</body>
+
+</html>

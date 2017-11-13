@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.center-head-pic{
+				width: 50px;
+				height: 50px;
+			}
+			.center-list>a{
+				padding:10px 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">借款返现</h1>
+		</header>
+		<div class="mui-content">
+			<div class="loan-return-head mui-row">
+				<div class="mui-col-xs-2">
+					<div class="center-head-pic"><img src="images/20150502174823_3PMmR.thumb.224_0.jpeg"/></div>
+				</div>
+				<div class="mui-col-xs-10">
+					<h4>用户名：王浩涛</h4>
+					<p>账户余额：<span>￥133.00</span><font><a href="javascript:;" id="withdrawals">立即提现</a><a href="javascript:;" class="record" id="record">提现记录</a></font></p>
+					<span>触发借款最后一步（申请成功）获得返现</span>
+				</div>
+			</div>
+			<div class="loan-return-grade">
+				<div class="center-list">
+					<a href="javascript:;"><p>我的成就&nbsp;&nbsp;<span class="color-gray">当前已点亮 <font class="color-green">14 </font>个图标</span><font class="color-green mui-pull-right" style="font-size: 13px;">成就奖励说明</font></p></a>
+				</div>
+				<div class="mui-row">
+					<div class="mui-col-xs-2 active">
+						<div class="img-box-respons">
+							<img src="images/gicon6.png" alt="" />
+						</div>
+						<div>青铜小白</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6" style="opacity: 0;"></div>
+							<div class="mui-col-xs-6"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+5元</div>
+					</div>
+					<div class="mui-col-xs-2 active">
+						<div class="img-box-respons">
+							<img src="images/gicon5.png" alt="" />
+						</div>
+						<div>白银菜鸟</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6"></div>
+							<div class="mui-col-xs-6"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+10元</div>
+					</div>
+					<div class="mui-col-xs-2">
+						<div class="img-box-respons">
+							<img src="images/gicon4.png" alt="" />
+						</div>
+						<div>黄金入门</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6"></div>
+							<div class="mui-col-xs-6"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+30元</div>
+					</div>
+					<div class="mui-col-xs-2">
+						<div class="img-box-respons">
+							<img src="images/gicon3.png" alt="" />
+						</div>
+						<div>铂金老哥</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6"></div>
+							<div class="mui-col-xs-6"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+50元</div>
+					</div>
+					<div class="mui-col-xs-2">
+						<div class="img-box-respons">
+							<img src="images/gicon2.png" alt="" />
+						</div>
+						<div>王者撸神</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6"></div>
+							<div class="mui-col-xs-6"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+100元</div>
+					</div>
+					<div class="mui-col-xs-2">
+						<div class="img-box-respons">
+							<img src="images/gicon1.png" alt="" />
+						</div>
+						<div>撸废了</div>
+						<div class="mui-row">
+							<div class="mui-col-xs-6"></div>
+							<div class="mui-col-xs-6" style="opacity: 0;"></div>
+							<div class="green-point"></div>
+						</div>
+						<div>+200元</div>
+					</div>
+				</div>
+			</div>
+			<div class="loan-return-content">
+				<div><div>申请借款即可点亮图标额外奖励饭钱</div></div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-col-xs-3 active">
+					<div class="img-box-respons"><img src="images/b1.png" alt="" /></div>
+				</div>
+				<div class="mui-col-xs-3 active">
+					<div class="img-box-respons"><img src="images/b2.png" alt="" /></div>
+				</div>
+				<div class="mui-col-xs-3 active">
+					<div class="img-box-respons"><img src="images/b3.png" alt="" /></div>
+				</div>
+				<div class="mui-col-xs-3">
+					<div class="img-box-respons"><img src="images/b4.png" alt="" /></div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			//立即提现
+			document.getElementById("withdrawals").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'loanWithdrawals',
+					url : 'loan-withdrawals.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//提现记录
+			
+			document.getElementById("record").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'loanRecord',
+					url : 'present-record.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

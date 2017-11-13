@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	
+		<!--底部选项卡-->
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="index-account" id="account">
+			<div class="home-icon"></div>
+			<span class="mui-tab-label">申请贷款</span>
+		</a>
+		<a class="mui-tab-item" href="index-accounting" id="accounting">
+			<div class="class-icon"></div>
+			<span class="mui-tab-label">网贷记账</span>
+		</a>
+		<a class="mui-tab-item" href="index-loan"  id="loan">
+			<div class="sun-icon"></div>
+			<span class="mui-tab-label">我的账户</span>
+		</a>
+	</nav>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init({
+		    subpages:[{
+			      	url:'index-loan.html',
+			      	id:'index-loan',
+			      	styles:{
+				      	top: '0px',
+				    	bottom: '51px',
+			      	},
+			      	show:{
+			      		autoShow:false
+			      	}
+		    	},{
+			      	url:'index-accounting.html',
+			      	id:'index-accounting',
+			      	styles:{
+				      	top: '0px',
+				    	bottom: '51px',
+			      	},
+			      	show:{
+			      		autoShow:false
+			      	}
+		    	},{
+			      	url:'index-account.html',
+			      	id:'index-account',
+			      	styles:{
+				      	top: '0px',
+				    	bottom: '51px',
+			      	}
+		    	}]
+		}); 
+      	//创建子页面
+		var subpages = ['index-account','index-accounting','index-loan'];       
+		//创建子页面，首个选项卡页面显示，其它均隐藏；
+		//当前激活选项卡
+		var activeTab = subpages[0];
+		//选项卡点击事件
+		mui('.mui-bar-tab').on('tap', 'a', function(e) {
+		    var targetTab = this.getAttribute('href');
+			//渲染需要登录的子页面
+			if(targetTab === 'index-accounting'){
+				mui.fire(plus.webview.getWebviewById('index-accounting'));
+			}else if(targetTab === 'index-loan'){
+				mui.fire(plus.webview.getWebviewById('index-loan'));
+			}
+		    if (targetTab == activeTab) {
+		    	console.log(targetTab)
+		        return;
+		    }
+		    //显示目标选项卡
+		    plus.webview.show(targetTab);
+		    //隐藏当前;
+		    plus.webview.hide(activeTab);
+		    //更改当前活跃的选项卡
+		    activeTab = targetTab;
+		});
+		
+		
+//		mui.ajax({
+//			type:"post",
+//			url:"http://xjms.buy23.cn/api/home",
+//			async:true,
+//			datatype:'json',
+//			data:{
+//				token:'123',
+//			},
+//			success:function(data){
+//				console.log(data);
+//				alert(data.code);
+//			}
+//		});
+//		
+//		alert('sdf');
+		
+   	</script> 
+</body>
+</html>

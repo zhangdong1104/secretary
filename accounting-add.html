@@ -1,0 +1,141 @@
+
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<link rel="stylesheet" href="css/mui.poppicker.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">添加记账</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div style="padding:0 40px;background: #FFFFFF;">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<a class="mui-control-item mui-active" href="#class1mobile">
+					<span>一次还清</span>
+				</a>
+						<a class="mui-control-item" href="#class2mobile">
+					<span>分期还款</span>
+				</a>
+					</div>
+					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
+				</div>
+				<div class="mui-slider-group">
+					<div id="class1mobile" class="mui-slider-item mui-control-content mui-active">
+						<form action="" class="sun-release-form personal-from" style="padding: 0; margin-top: 10px;">
+					    	<div class="mui-input-row">
+					    		<label for="">平台名称</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入放款平台名称"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">下款金额</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入平台下款金额"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					    		<input type="text" class="mui-input-clear" value="1" disabled="disabled"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">还款日期</label>
+					    		<input type="text" class="mui-input-clear" id="showUserPicker" placeholder="请选择"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">每期应还</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入每期应还金额"/>	
+					    	</div>
+					    	<div class="my-btn-block-box">
+					    		<button type="submit" class="mui-btn my-btn-block">保存</button>
+					    	</div>
+					    </form>
+					</div>
+					<div id="class2mobile" class="mui-slider-item mui-control-content">
+						<form action="" class="sun-release-form personal-from" style="padding: 0; margin-top: 10px;">
+					    	<div class="mui-input-row">
+					    		<label for="">平台名称</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入放款平台名称"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">下款金额</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入平台下款金额"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入还款的期限"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">还款日期</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请选择"/>	
+					    	</div>
+					    	<div class="mui-input-row">
+					    		<label for="">每期应还</label>
+					    		<input type="text" class="mui-input-clear" placeholder="请输入每期应还金额"/>	
+					    	</div>
+					    	<div class="my-btn-block-box">
+					    		<button type="submit" class="mui-btn my-btn-block">保存</button>
+					    	</div>
+					    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false
+			});
+			
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//普通示例
+					var userPicker = new $.PopPicker();
+					var userPicker1 = new $.PopPicker();
+					userPicker.setData([{
+						value: 'day1',
+						text: '每月1号'
+					}, {
+						value: 'day2',
+						text: '每月10号'
+					}, {
+						value: 'day3',
+						text: '每月15号'
+					}]);
+					
+					var myPiker = doc.getElementById('showUserPicker');
+					myPiker.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+							myPiker.innerHTML= items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<div class="center-container">
+			<div class="accounting-head">
+				<div class="mui-text-right add-accounting">
+		    		<a class="add mes" id="mes" href="javascript:;"></a>
+		    	</div>
+		    </div>
+			<div class="center-head">
+				<div class="center-head-pic" id="login"><img src="images/20150502174823_3PMmR.thumb.224_0.jpeg"/></div>
+				<div class="center-head-name">
+					用户名张海涛
+				</div>
+			</div>
+			
+			<div class="mui-row fast-box">
+				<div class="mui-col-xs-6">
+					<a href="javascript:;" id="returnLoan">
+						<b></b>借款返现
+					</a>
+				</div>
+				<div class="mui-col-xs-6">
+					<a href="javascript:;" id="friend">
+						<b></b>邀请好友
+					</a>
+				</div>
+			</div>
+			<!--全部订单-->
+			<div class="center-list" id="order">
+				<a href="javascript:;"><p><b class="tool"></b>小工具<span class="mui-pull-right">&gt;</span></p></a>
+			</div>
+			<div class="center-list-order">
+				<ul class="mui-list-inline">
+					<li>
+						<a href="javascript:;">
+							<div></div>
+							<span>信用查询</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div></div>
+							<span>小游戏</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div></div>
+							<span>更多</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="my-bar"></div>
+			<div style="margin-bottom: 10px;">
+				<div class="center-list">
+					<a href="javascript:;"><p><b class="group"></b>加群交流<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+				<div class="center-list">
+					<a href="javascript:;"><p><b class="follow"></b>关注微信<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+				<div class="center-list">
+					<a href="javascript:;" id="que"><p><b class="question"></b>常见问题<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+				<div class="center-list">
+					<a href="javascript:;" class="no-margin-bottom" id="about"><p><b class="about"></b>关于我们<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;">
+				<div class="center-list">
+					<a href="javascript:;"><p><b class="set"></b>设置<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+				<div class="center-list">
+					<a href="javascript:;" class="no-margin-bottom" id="forget"><p><b class="modifyPsd"></b>修改密码<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;">
+				<div class="center-list">
+					<a href="javascript:;" style="position:relative">
+						<p><b class="clock"></b>还款提醒是否开启
+							<div class="mui-switch mui-switch-mini mui-pull-right" style="position: absolute; right: 15px;top: 12px;">
+							  	<div class="mui-switch-handle"></div>
+							</div>
+						</p>
+					</a>
+				</div>
+				<div class="center-list ">
+					<a href="javascript:;" class="no-margin-bottom"><p><b class="opinions"></b>意见反馈<span class="mui-pull-right">&gt;</span></p></a>
+				</div>
+			</div>
+			<div class="my-bar"></div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//登录
+			document.getElementById("login").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'Login',
+					url : 'login.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//忘记密码
+			document.getElementById("forget").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'forgetPassword',
+					url : 'forget-password.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//消息 
+			document.getElementById("mes").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerMes',
+					url : 'center-messages.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//借款返现
+			
+			document.getElementById("returnLoan").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'indexReturnLoan',
+					url : 'index-loan-return.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//邀请好友
+			
+			document.getElementById("friend").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'indexLoanFriend',
+					url : 'index-loan-friend.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+			//常见问题 
+			document.getElementById("que").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerQue',
+					url : 'center-question.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+//			关于我们
+    		document.getElementById("about").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'centerAbout',
+					url : 'center-about.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

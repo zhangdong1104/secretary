@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<style type="text/css">
+			.mui-input-row{
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">申请提现</h1>
+		</header>
+		<div class="mui-content">
+			<form action="" class="sun-release-form personal-from" style="padding: 0; margin-top: 10px; background-color: transparent;">
+		    	<div class="mui-input-row">
+		    		<label for="">提现金额</label>
+		    		<input type="text" class="mui-input-clear" placeholder="请输入提现金额"/>	
+		    		<p class="color-gray" style="font-size: 13px;padding-left: 90px;position: relative;top: -5px;display: block;clear: both;">可提现￥116.32元&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" style="color:#d13535">全部</a></p>
+		    	</div>
+		    	<div>
+		    		<p style="padding: 8px 15px; color: #D21D1D;font-size: 11px;margin: 0;">*金额满50元即可提现，提现手续费 2 元</p>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">用户姓名</label>
+		    		<input type="text" class="mui-input-clear" placeholder="提现用户姓名"/>	
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">手机号码</label>
+		    		<input type="text" class="mui-input-clear" placeholder="请输入手机号码"/>	
+		    	</div>
+		    	<div class="mui-input-row" style="margin-bottom: 10px;">
+		    		<label for="">身份证号</label>
+		    		<input type="text" class="mui-input-clear" placeholder="请输入身份证号"/>	
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">提现账号</label>
+		    		<input type="text" class="mui-input-clear" placeholder="请输入支付宝账号"/>	
+		    	</div>
+		    	<div class="my-btn-block-box">
+		    		<button type="button" class="mui-btn my-btn-block" id="result">提交</button>
+		    	</div>
+		    </form>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false
+			});
+			
+//			提交结果
+			document.getElementById("result").addEventListener('tap',function(){
+				mui.openWindow({
+					id : 'indexResult',
+					url : 'index-withdrawals-result.html',
+					show : {
+						autoShow:true
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
