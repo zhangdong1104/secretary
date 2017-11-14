@@ -1,5 +1,11 @@
 
 
+if(window.plus){
+		plusReady(); 
+	}else{ 
+		document.addEventListener('plusready', plusReady,false);
+	}
+
 //设置地址
 	function set_url(url) {
 	    if(url[0]=='/') {
@@ -11,7 +17,6 @@
 	}
 
 var app = {
-	var thi = this;
 	set_h:function(key,data){
         if(!key) 
         {
@@ -49,26 +54,110 @@ var app = {
            return data;
        }
     },
-};
-
-//ajax
-app.ajax = function(url,datas){
-	url = app.set_url(url);
+    //清空所有缓存
+    empty_all_h:function(){
+    	localStorage.clear();
+    },
+    //清空单个缓存
+    empty_one_h:function(key){
+    	localStorage.removeItem(key);
+    },
+    
+    //检查缓存
+    select_h:function(key){
+    	if(localStorage.hasOwnProperty(key)){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    },
+    //获取系统类型
+    get_system:function() //获取系统类型 ios或android(全小写)
+    {
+        if(!this._system) 
+        {
+            if(uexWidgetOne.platformName=="iOS") 
+            {
+                this._system =  "ios";
+            }else{
+                this._system = "android";
+            }
+        }
+        return this._system;
+    },
+    //ajax
+    ajax:function(url,datas,success,error){
+    	if(!url){
+            return false;
+        }
+	url = set_url(url);
+	var that = this;
+        if(typeof(url)=="object") 
+        {
+            data = url.data;
+            success = url.success;
+            error = url.error;
+            url = url.url;
+            status =  url.status;
+        }
+	if(typeof(success)!="function") 
+        {
+            success = function(){};
+        }
+        if(typeof(error)!="function") 
+        {
+            error = function(){};
+        }
 	mui.ajax({
 			type:"post",
 			url:url,
 			async:true,
 			datatype:'json',
 			data:datas,
-			headers:{
-				token:thi.get('token'),
-				user:thi.get_h('user'),
+			headers:{'Content-Type':'application/json'},
+			beforeSend:function(){
+//				void plus.nativeUI.closeToast();
+				app.open('sdf');
+				
 			},
 			success:function(data){
-				return data;
+				if(data.code==404){
+					mui.openWindow({
+//					id : 'login',
+					url : 'login.html',
+					show : {
+						autoShow:true
+					}
+				});
+//					mui.openWindow('login.html'); 
+				}
+				console.log(data);
+				success(data);
+			},
+			error:function(){
+				return 'error'
 			}
 		});
+},
+    
+};
+
+app.open = function(){
+	if(window.plus){
+		plusReady(); 
+	}else{ 
+		document.addEventListener('plusready', plusReady,false);
+	}
 }
+ 
+
+function plusReady(){
+	plus.nativeUI.showWaiting(); 
+	setTimeout( function(){
+		plus.nativeUI.closeWaiting();
+	},5000);
+}
+
 
 app.set_html = function(data,status)
 {
@@ -116,3 +205,27 @@ app.set_html = function(data,status)
         
     }
 }
+
+//退出
+app.closeApp = function() {
+    plus.nativeUI.actionSheet({
+        cancel: "取消",
+        buttons: [{
+            title: "注销当前账号"
+        }, {
+            title: "直接关闭应用"
+        }]
+    }, function(e) {
+        var index = e.index;
+        switch (index) { //case 0: 取消
+            case 1: //
+                localStorage.clear();
+                plus.runtime.restart();
+                plus.webview.show('index-loan');
+                break;
+            case 2: //
+                plus.runtime.quit();
+                break;
+        }
+    });
+}; 

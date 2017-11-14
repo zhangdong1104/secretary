@@ -201,25 +201,13 @@
 								</div>
 								<div class="mui-col-xs-6">
 									<div>
-										<div><b class="brank-logo-box"><img src="images/brankLogo.jpg" alt="" /></b><span>中国建设银行</span><sup class="new">新</sup></div>
-										<div class="mui-text-center">
-											<p style="font-size: 17px;font-weight: 300;">8000.00</p>
-											<p class="color-gray">最高可节额度（元）</p>
-											<a href="javascript:;" class="mui-btn my-btn">立即借款</a>
-											<p class="color-gray">1000元日息0.20元</p>
-										</div>
+										<a href="http://baidu.com">百度</a>
 									</div>
 								</div>
 								<div class="mui-col-xs-6">
-									<div>
-										<div><b class="brank-logo-box"><img src="images/brankLogo.jpg" alt="" /></b><span>中国建设银行</span><sup class="new">新</sup></div>
-										<div class="mui-text-center">
-											<p style="font-size: 17px;font-weight: 300;">8000.00</p>
-											<p class="color-gray">最高可节额度（元）</p>
-											<a href="javascript:;" class="mui-btn my-btn">立即借款</a>
-											<p class="color-gray">1000元日息0.20元</p>
-										</div>
-									</div>
+									<div id="dropout" onclick="closeApp();">
+								        <a href="#"><ul class="mui-footer_dropout mui_magrin-top" >退出登录</ul></a>
+							        </div>
 								</div>
 							</div>
 						</div>
@@ -228,9 +216,11 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<script src="js/mui.min.js"></script>
+		<script src="js/layer.js"></script>
 		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+		
 		<script>
 			
 			function $(element){
@@ -351,13 +341,23 @@
 			});
 	</script>
 	<script>
-		var data = app.ajax('/home',{
-			token:'123',
-		});
-		console.log(data);
+//		app.set_h('token','123'); 
+		var data = app.ajax('/home',{token:'123'},function(data){
+			console.log(data.code);
+			if(data.code==1){
+				var myscroll = mui('#myscroll');
+				console.log(myscroll);
+				console.log(data);
+			}
+		})
 		
-		alert(data.code);
 	</script>
+	 <script type="text/javascript">
+         function closeApp(){
+         	mui.openWindow('login.html'); 
+//       	app.closeApp();
+         }
+    </script>
 
 	</body>
 

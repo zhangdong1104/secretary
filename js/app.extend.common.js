@@ -26,7 +26,7 @@ function set_url(url)
         var a = "/";ht,l
     }
     
-    return "http://zhilingxiyi.somorn.com"+a+url;
+    return "http://xjms.buy23.cn/api"+a+url;
     // return "http://127.0.0.1"+a+url;
 }
 

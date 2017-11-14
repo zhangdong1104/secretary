@@ -74,7 +74,9 @@
 			"index-account-credit.html",
 			"index-account-loan.html",
 			"index-account-kill.html",
-			"loan-detail.html"
+			"loan-detail.html",
+			"login.html",
+			"index-account.html"
 		],
 		"priority": 0
 	},
