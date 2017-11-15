@@ -1,10 +1,6 @@
 
 
-if(window.plus){
-		plusReady(); 
-	}else{ 
-		document.addEventListener('plusready', plusReady,false);
-	}
+
 
 //设置地址
 	function set_url(url) {
@@ -92,14 +88,6 @@ var app = {
         }
 	url = set_url(url);
 	var that = this;
-        if(typeof(url)=="object") 
-        {
-            data = url.data;
-            success = url.success;
-            error = url.error;
-            url = url.url;
-            status =  url.status;
-        }
 	if(typeof(success)!="function") 
         {
             success = function(){};
@@ -108,17 +96,20 @@ var app = {
         {
             error = function(){};
         }
+        
+        
+        datas = datas || {};
 	mui.ajax({
 			type:"post",
 			url:url,
 			async:true,
 			datatype:'json',
 			data:datas,
-			headers:{'Content-Type':'application/json'},
+			headers:{
+				token:app.get_h('token'),
+			},
 			beforeSend:function(){
-//				void plus.nativeUI.closeToast();
-				app.open('sdf');
-				
+				app.open();
 			},
 			success:function(data){
 				if(data.code==404){
@@ -142,6 +133,7 @@ var app = {
     
 };
 
+//转圈
 app.open = function(){
 	if(window.plus){
 		plusReady(); 
@@ -149,7 +141,6 @@ app.open = function(){
 		document.addEventListener('plusready', plusReady,false);
 	}
 }
- 
 
 function plusReady(){
 	plus.nativeUI.showWaiting(); 

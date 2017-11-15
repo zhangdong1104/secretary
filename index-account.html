@@ -30,10 +30,11 @@
 				<div class="mui-scroll">
 					<div class="img-box-respons">
 						<img src="images/h1.jpg" alt="" />
+						<!--<img src="images/h1.jpg" alt="" />-->
 					</div>
 					<!--公告-->
 					<div class="account-notice-box">
-						<b class="logoSmall" style="margin-right: 5px;"><img src="images/logoSmall.jpg" alt="" /></b><span class="color-green">现金秘书</span>
+						<b class="logoSmall" style="margin-right: 5px;"><img src="images/logoSmall.jpg" alt="" /></b><span class="color-green" id="xjms">现金秘书</span>
 						<b class="horn"style="margin:0 5px;"></b>
 						<div id="myscroll" class="cls_container">
 							<ul>
@@ -220,6 +221,7 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/layer.js"></script>
 		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		
 		<script>
 			
@@ -341,15 +343,18 @@
 			});
 	</script>
 	<script>
-//		app.set_h('token','123'); 
-		var data = app.ajax('/home',{token:'123'},function(data){
-			console.log(data.code);
+		var data = app.ajax('/home',{},function(data){
+			console.log(data.data);
 			if(data.code==1){
-				var myscroll = mui('#myscroll');
-				console.log(myscroll);
-				console.log(data);
+				console.log(data.msg);
 			}
+		},function(data){
+			console.log(data);
 		})
+		
+		//循环添加轮播图
+		
+		
 		
 	</script>
 	 <script type="text/javascript">
