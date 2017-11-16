@@ -25,13 +25,14 @@
 			<div id="slider" class="mui-slider">
 				<div style="padding:0 40px;background: #FFFFFF;">
 					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-						<a class="mui-control-item mui-active" href="#class1mobile">
-					<span>一次还清</span>
-				</a>
-						<a class="mui-control-item" href="#class2mobile">
-					<span>分期还款</span>
-				</a>
+						<a class="mui-control-item mui-active" data-type="1" href="#class1mobile">
+							<span>一次还清</span>
+						</a>
+						<a class="mui-control-item"  data-type="2" href="#class2mobile">
+							<span>分期还款</span>
+						</a>
 					</div>
+					<input type="hidden" id="type" value="1" />
 					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
 				</div>
 				<div class="mui-slider-group">
@@ -39,30 +40,30 @@
 						<form action="" class="sun-release-form personal-from" style="padding: 0; margin-top: 10px;">
 					    	<div class="mui-input-row">
 					    		<label for="">平台名称</label>
-					    		<input type="text" class="mui-input-clear" placeholder="请输入放款平台名称"/>	
+					    		<input type="text" class="mui-input-clear" id="pname" placeholder="请输入放款平台名称"/>	
 					    	</div>
 					    	<div class="mui-input-row">
 					    		<label for="">下款金额</label>
-					    		<input type="text" class="mui-input-clear" placeholder="请输入平台下款金额"/>	
+					    		<input type="number" class="mui-input-clear" id="money" placeholder="请输入平台下款金额"/>	
 					    	</div>
 					    	<div class="mui-input-row">
 					    		<label for="">期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					    		<input type="text" class="mui-input-clear" value="1" disabled="disabled"/>	
+					    		<input type="text" class="mui-input-clear" id="qixian" value="1" id="qixian" placeholder="请输入期限" disabled="disabled"/>	
 					    	</div>
 					    	<div class="mui-input-row">
 					    		<label for="">还款日期</label>
-					    		<input type="text" class="mui-input-clear" id="showUserPicker" placeholder="请选择"/>	
+					    		<input type="text" class="mui-input-clear" name="detetime" id="showUserPicker" placeholder="请选择"/>	
 					    	</div>
 					    	<div class="mui-input-row">
 					    		<label for="">每期应还</label>
-					    		<input type="text" class="mui-input-clear" placeholder="请输入每期应还金额"/>	
+					    		<input type="number" class="mui-input-clear" id="datemoney" placeholder="请输入每期应还金额"/>	
 					    	</div>
 					    	<div class="my-btn-block-box">
-					    		<button type="submit" class="mui-btn my-btn-block">保存</button>
+					    		<button type="button" id="submit" class="mui-btn my-btn-block">保存</button>
 					    	</div>
 					    </form>
 					</div>
-					<div id="class2mobile" class="mui-slider-item mui-control-content">
+					<!--<div id="class2mobile" class="mui-slider-item mui-control-content">
 						<form action="" class="sun-release-form personal-from" style="padding: 0; margin-top: 10px;">
 					    	<div class="mui-input-row">
 					    		<label for="">平台名称</label>
@@ -88,13 +89,14 @@
 					    		<button type="submit" class="mui-btn my-btn-block">保存</button>
 					    	</div>
 					    </form>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/mui.picker.js"></script>
 		<script src="js/mui.poppicker.js"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			mui.init({
 				swipeBack: false
@@ -129,13 +131,72 @@
 					var myPiker = doc.getElementById('showUserPicker');
 					myPiker.addEventListener('tap', function(event) {
 						userPicker.show(function(items) {
-							myPiker.innerHTML= items[0].text;
+							myPiker.value= items[0].text;
 							//返回 false 可以阻止选择框的关闭
 							//return false;
 						});
 					}, false);
 				});
 			})(mui, document);
+			//分期切换
+			mui('#sliderSegmentedControl').on('tap','.mui-control-item',function(){
+				var type = this.getAttribute('data-type');
+				mui('#type')[0].value = type;
+				if(type==2){
+					mui('#qixian')[0].disabled = '';
+					mui('#qixian')[0].value = '';
+				}else{
+					mui('#qixian')[0].disabled = 'disabled';
+					mui('#qixian')[0].value = 1;
+				}
+			})
+			
+			//数据提交
+			mui('#submit')[0].addEventListener('tap',function(){
+				var pname = mui('#pname')[0].value;
+				var money = mui('#money')[0].value;
+				var qixian = mui('#qixian')[0].value;
+				var datetime = mui('#showUserPicker')[0].value;
+				var datemoney = mui('#datemoney')[0].value;
+				var type = mui('#type')[0].value;
+				if(!pname){
+					mui.toast('平台名称不能为空！');
+					return false;
+				};
+				if(!money){
+					mui.toast('下款金额不能为空！');
+					return false;
+				}; 
+				if(!qixian){
+					mui.toast('期限不能为空！');
+					return false;
+				};
+				if(!datetime){
+					mui.toast('还款日期不能为空！');
+					return false;
+				};
+				if(!datemoney){
+					mui.toast('每期应还不能为空！');
+					return false;
+				};
+				var datas = {
+					pname:pname,
+					money:money,
+					qixian:qixian,
+					detetime:datetime,//detetime 接口就是这个
+					datemoney:datemoney,
+					type:type
+				};
+				
+				app.ajax('/addccount',datas,function(data){
+					mui.toast(data.msg);
+					if(data.code==1){
+						mui.back();
+					}
+				})
+				
+			})
+			
 		</script>
 	</body>
 </html>

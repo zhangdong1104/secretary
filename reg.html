@@ -24,31 +24,68 @@
 		    <form action="" class="mui-input-group mine-balance-recharge-box login-form">
 		    	<div class="mui-input-row">
 		    		<label for="">手机号</label>
-		    		<input type="text" class="mui-input-clear" placeholder="请输入手机号"/>	
+		    		<input type="number" class="mui-input-clear" id="phone" placeholder="请输入手机号"/>	
 		    	</div>
 		    	<div class="rechagre-btn-box">
 		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" type="button" id="register1">获取验证码</button>
 		    	</div>
 		    	<div class="mui-input-row mui-checkbox mui-text-center chkbox" style="border-bottom: none;">
-		    		<input name="checkbox1" value="Item 1" type="checkbox">
+		    		<input name="checkbox1" value="Item 1" type="checkbox" checked="checked">
 				  	<label><b class="cbox"></b><a href="javascript:;">我已阅读并同意《贷款平台用户协议》</a></label>
 				</div>
 		    </form>
 		</div>
 		
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			//新用户注册
+			
 			document.getElementById("register1").addEventListener('tap',function(){
-				mui.openWindow({
-					id : 'userRegister1',
-					url : 'reg1.html',
-					show : {
-						autoShow:true
-					}
-				});
+				var phone = mui('#phone')[0].value;
+				var checkphone = /^1\d{10}$/;  //手机正则
+				if(!phone){
+					mui.toast('手机不能为空！');
+					return false;
+				}
+				if(!checkphone.test(phone)){
+					mui.toast('手机格式不对！');
+					return false;
+				};
+				app.set_h('regphone',phone);
+				var data ={
+					phone:phone,
+				};
+				app.ajax('/get_code',
+				data,
+				function(data){
+					mui.toast(data.msg);
+					if(data.code==1){
+						var ws = null;
+				    	mui.plusReady(function () {
+					        ws = plus.webview.create("reg1.html","userRegister1",{top:"0px",bottom:"0px"});
+					    })
+						mui.fire(ws,'send',{
+				            phone:phone
+				        });
+						mui.openWindow({
+							id : 'userRegister1',
+							url : 'reg1.html',
+							show : {
+								autoShow:true
+							}
+						});
+					};
+				},
+				function(){
+					mui.toast('网络错误！');
+				}
+				)
+				
 			});
+			
+			
 		</script>
 	</body>
 

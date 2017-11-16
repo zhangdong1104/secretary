@@ -23,13 +23,13 @@
 		<div class="mui-content">
 			<div class="mui-text-center" style="margin-top: 50px;">
 				<span style="font-size: 15px;">已发送手机验证码到</span>
-				<p style="font-weight: bold;font-size: 30px;margin-bottom: 0;margin-top: 15px;">+86 135 1251 1254</p>
+				<p style="font-weight: bold;font-size: 30px;margin-bottom: 0;margin-top: 15px;">+86 <span id="phone"></span></p>
 			</div>
 		    <form action="" class="mui-input-group mine-balance-recharge-box login-form">
 		    	<div class="mui-input-row" style="position: relative;">
 		    		<label for="">验证码</label>
-		    		<input type="text" class="mui-input-clear" placeholder="请输入手机号"/>	
-		    		<a href="javascript:;" class="code"><span>14</span>s</a>
+		    		<input type="text" class="mui-input-clear" id="code" placeholder="请输入验证码"/>	
+		    		<!--<a href="javascript:;" class="code"><span>14</span>s</a>-->
 		    	</div>
 		    	<div class="rechagre-btn-box">
 		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" type="button" id="register2">下一步</button>
@@ -38,17 +38,60 @@
 		</div>
 		
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			var phone = '';
+			window.addEventListener('send',function(event){
+			  //获得事件参数 
+			  phone = event.detail.phone;
+			  if(!phone){
+			  	phone = app.get_h('regphone');
+			  }
+			  mui('#phone')[0].innerHTML = phone;
+			});
+			
+			if(!phone){
+				mui('#phone')[0].innerHTML = app.get_h('regphone');
+				console.log(app.get_h('regphone'));
+			}
+
+			
+			
+			
+			
+			
 			//新用户注册
 			document.getElementById("register2").addEventListener('tap',function(){
-				mui.openWindow({
-					id : 'userRegister2',
-					url : 'reg2.html',
-					show : {
-						autoShow:true
+				var code = mui('#code')[0].value;
+				var phone = app.get_h('regphone');
+				if(!code){
+					mui.toast('请填写验证码！');
+					return false;
+				};
+//				if(isNaN(code)){
+//					mui.toast('验证码有误！');
+//					return false;
+//				}
+				var datas = {
+					phone:phone,
+					code:code
+				};
+				//验证验证码
+				app.ajax('/is_code',datas,function(data){
+					mui.toast(data.msg);
+					if(data.code==1){
+						app.set_h('regcode',code);
+						mui.openWindow({
+							id : 'userRegister2',
+							url : 'reg2.html',
+							show : {
+								autoShow:true
+							}
+						});
 					}
-				});
+				},function(){});
+				
 			});
 			//忘记密码
 //			document.getElementById("forget").addEventListener('tap',function(){

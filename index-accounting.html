@@ -18,7 +18,8 @@
 		    		<a class="add" id="add" href="javascript:;"></a>
 		    	</div>
 		    	<div class="accounting-money">
-		    		<input type="text" value="54,565.00"  disabled="disabled"/>
+		    		<input type="text" value="54,565.00" id="ccount_zong_wei" disabled="disabled"/>
+		    		<input type="hidden" id="ccount_zong_hidden" />
 		    		<p>未还款总金额（元）<a href="javascript:;" class="eye"></a></p>
 		    	</div>
 			</div>
@@ -26,19 +27,19 @@
 		    	<div class="mui-col-xs-4">
 		    		<div>
 		    			<p>撸下的总金额（元）</p>
-		    			<span>86,000.00</span>
+		    			<span id="ccount_zong">86,000.00</span>
 		    		</div>
 		    	</div>
 		    	<div class="mui-col-xs-4">
 		    		<div>
 		    			<p>本月应还总金额（元）</p>
-		    			<span>560.00</span>
+		    			<span id="ccount_benyue">560.00</span>
 		    		</div>
 		    	</div>
 		    	<div class="mui-col-xs-4">
 		    		<div>
 		    			<p>已怀孕的平台数</p>
-		    			<span>12</span>
+		    			<span id="ccount_ping">12</span>
 		    		</div>
 		    	</div>
 		    </div>
@@ -171,25 +172,7 @@
 								</a>
 								<div class="mui-collapse-content">
 									<ul class="mui-list-unstyled">
-										<li>
-											<b>本期还款<span style="color:#37bf7c">￥120.00</span></b>
-											<p class="color-gray">贷款金额￥5,000.00  剩余未还金额￥4,500.00</p>
-											<div>
-												<button type="button" class="mui-btn my-btn my-btn-grey">删除</button>
-												<button type="button" class="mui-btn my-btn my-btn-yellow">修改</button>
-												<button type="button" class="mui-btn my-btn my-btn-green">标记还清</button>
-											</div>
-											<div class="repayment"><img src="images/repayment.png" alt="" /></div>
-										</li>
-										<li>
-											<b>本期还款<span style="color:#37bf7c">￥120.00</span></b><span class="mui-pull-right" style="font-size: 12px;"><font class="color-gray">还款日期：</font>2017-10-04</span>
-											<p class="color-gray">贷款金额￥5,000.00  剩余未还金额￥4,500.00</p>
-											<div>
-												<button type="button" class="mui-btn my-btn my-btn-grey">删除</button>
-												<button type="button" class="mui-btn my-btn my-btn-yellow">修改</button>
-												<button type="button" class="mui-btn my-btn my-btn-green">标记还清</button>
-											</div>
-										</li>
+										
 									</ul>
 									
 								</div>
@@ -200,6 +183,7 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			
@@ -213,6 +197,97 @@
 					}
 				});
 			});
+			
+			get_data();
+			
+			function get_data(){
+				app.ajax('/myaccount',{},function(data){
+				if(data.code==1){
+						set_page_data(data.data);
+					}
+				},function(data){
+					console.log(data);
+				})
+			}
+			
+			function set_page_data(data){
+				mui('#ccount_zong_wei')[0].value = data.info.wei_zong||'00.00';
+				mui('#ccount_zong_hidden')[0].value = data.info.wei_zong||'00.00';
+				mui('#ccount_zong')[0].innerHTML = data.info.wei_zong||'00.00';
+				mui('#ccount_benyue')[0].innerHTML = data.info.wei_zong||'00.00';
+				mui('#ccount_ping')[0].innerHTML = data.info.wei_zong||'00.00';
+				
+				//记账列表
+				var data_list = data.list;
+				var list = '';
+				var list2 = '';
+				if(data_list){
+					for (var i=0;i<data_list.length;i++) {
+						list2 = '';
+						if(data_list.chil){
+							for (var s=0;s<data_list.chil.length;s++) {
+								list2 = '<li>'
+								+'<b>本期还款<span style="color:#37bf7c">￥120.00</span></b>'
+								+'<p class="color-gray">贷款金额￥5,000.00  剩余未还金额￥4,500.00</p>'
+								+'<div>'
+								+'<button type="button" class="mui-btn my-btn my-btn-grey">删除</button>'
+								+'<button type="button" class="mui-btn my-btn my-btn-yellow">修改</button>'
+								+'<button type="button" class="mui-btn my-btn my-btn-green">标记还清</button>'
+								+'</div>'
+								+'<div class="repayment"><img src="images/repayment.png" alt="" /></div>'
+								+'</li>';
+							}
+						}
+						list += '<div>'
+						+'<div class="title">'
+						+'10月'
+						+'</div>'
+						+'<div>'
+						+'<ul class="mui-table-view">'
+						+'<li class="mui-table-view-cell mui-collapse">'
+						+'<a href="#" class="accounting-collapse">'
+						+'<span>中国建设银行贷款</span>'
+						+'<div class="accounting-collapse-list mui-row mui-text-left">'
+						+'<div class="mui-col-xs-4">'
+						+'<b style="color:#de4444">8,000.00</b>'
+						+'<p class="color-gray">贷款金额（元）</p>'
+						+'</div>'
+						+'<div class="mui-col-xs-4">'
+						+'<b style="color:#e2be2d">6,400.00</b>'
+						+'<p class="color-gray">剩余贷款金额（元）</p>'
+						+'</div>'
+						+'<div class="mui-col-xs-4">'
+						+'<b style="color:#37bf7c">300.00</b>'
+						+'<p class="color-gray">还款金额（元）</p>'
+						+'</div>'
+						+'</div>'
+						+'<div class="repayment"><img src="images/repayment.png" alt="" /></div>'
+						+'</a>'
+						+'<div class="mui-collapse-content">'
+						+'<ul class="mui-list-unstyled">'+list2+'</ul>'
+						+'</div>'
+						+'</li>'
+						+'</ul>'
+						+'</div>'
+						+'</div>';
+					}
+				};
+				if(list){
+					mui('#data_list')[0].innerHTML = list;
+				}
+				
+			}
+			
+			mui('.eye')[0].addEventListener('tap',function(){
+				var wei = mui('#ccount_zong_wei')[0].value;
+				var num = mui('#ccount_zong_hidden')[0].value;
+				if(isNaN(wei)){
+					mui('#ccount_zong_wei')[0].value = num;
+				}else{
+					mui('#ccount_zong_wei')[0].value = '*****';
+				}
+			})
+			
 		</script>
 	</body>
 

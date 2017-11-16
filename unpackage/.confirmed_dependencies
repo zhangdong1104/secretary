@@ -40,7 +40,9 @@
 			"js/mui.min.js",
 			"images/kill.png"
 		],
-		"refer": [],
+		"refer": [
+			"loan-detail.html"
+		],
 		"priority": 0
 	},
 	"loan-detail.html": {
@@ -162,7 +164,8 @@
 			"images/logo.png"
 		],
 		"refer": [
-			"reg.html"
+			"reg.html",
+			"index.html"
 		],
 		"priority": 0
 	},

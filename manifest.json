@@ -380,7 +380,10 @@
 					"js/mui.min.js",
 					"images/kill.png"
 				],
-				"priority": 3
+				"priority": 3,
+				"refer": [
+					"loan-detail.html"
+				]
 			},
 			"loan-detail.html": {
 				"href": "loan-detail.html",
@@ -813,7 +816,8 @@
 					"images/logo.png"
 				],
 				"refer": [
-					"reg.html"
+					"reg.html",
+					"index.html"
 				],
 				"priority": 3
 			},

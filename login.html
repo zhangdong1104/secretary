@@ -31,8 +31,8 @@
 		    	</div>
 		    	<div class="mui-input-row active" style="position: relative;">
 		    		<label for="">密码</label>
-		    		<input type="text" class="mui-input-clear" id="psd" placeholder="请输入登录密码"/>	
-		    		<a href="javascript:;" class="pas"></a>
+		    		<input type="password" class="mui-input-clear" id="psd" placeholder="请输入登录密码"/>	
+		    		<!--<a href="javascript:;" class="pas"></a>-->
 		    	</div>
 		    	<div class="rechagre-btn-box">
 		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" id="submit" type="button">登录</button>
@@ -61,14 +61,46 @@
 			});
 			
 			//提交登陆数据
-			var submi = mui('#submit')[0];
-			submi.addEventListener('tap',function(){
+			mui('#submit')[0].addEventListener('tap',function(){
 				var phone = $('#phone').val();
 				var psd = $('#psd').val();
+				var checkphone = /^1\d{10}$/;  //手机正则
 				if(!phone){
 					mui.toast('手机不能为空！');
 					return false;
 				}
+				if(!checkphone.test(phone)){
+					mui.toast('手机格式不对！');
+					return false;
+				}
+				if(!psd){
+					mui.toast('密码不能为空！');
+					return false;
+				}
+				var data = {
+					'phone':phone,
+					'password':psd,
+				};
+				app.ajax('/login',
+				data,
+				function(data){
+					mui.toast(data.msg);
+					if(data.code==1){
+						app.set_h('user',data.data);
+						app.set_h('token',data.data.token);
+						mui.openWindow({
+							id :'index',
+							url :'index.html',
+							show : {
+								autoShow:true
+						}
+					});
+					};
+				},
+				function(){
+					mui.toast('网络错误！');
+				}
+				);
 			});
 			
 		</script>

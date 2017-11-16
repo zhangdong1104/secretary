@@ -24,29 +24,67 @@
 		    <form action="" class="mui-input-group mine-balance-recharge-box login-form">
 		    	
 		    	<div class="mui-input-row active" style="position: relative;">
-		    		<label for="">密码</label>
-		    		<input type="password" class="mui-input-clear" placeholder="请输入登录密码"/>	
-		    		<a href="javascript:;" class="pas"></a>
+		    		<label for="">您的密码</label>
+		    		<input type="password" class="mui-input-clear" id="psd" placeholder="请输入登录密码"/>	
+		    		<!--<a href="javascript:;" class="pas"></a>-->
+		    	</div>
+		    	<div class="mui-input-row active" style="position: relative;">
+		    		<label for="">重复密码</label>
+		    		<input type="password" class="mui-input-clear" id="psd2" placeholder="重复输入密码"/>	
+		    		<!--<a href="javascript:;" class="pas"></a>-->
 		    	</div>
 		    	<div class="rechagre-btn-box">
-		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" type="button">完成</button>
+		    		<button class="mui-btn my-btn mui-btn-block my-btn-block" id="register" type="button">完成</button>
 		    	</div>
 		    	
 		    </form>
 		</div>
 		
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
-			//新用户注册
+			//新用户注册 
 			document.getElementById("register").addEventListener('tap',function(){
-				mui.openWindow({
-					id : 'userRegister',
-					url : 'reg.html',
-					show : {
-						autoShow:true
+				var phone = app.get_h('regphone');
+				var psd = mui('#psd')[0].value;
+				var psd2 = mui('#psd2')[0].value;
+				if(!psd){
+					mui.toast('密码不能为空！');
+					return false;
+				};
+				if(!psd2){
+					mui.toast('重复密码不能为空！');
+					return false;
+				};
+				if(psd.length<6){
+					mui.toast('密码长度最小为6位数！');
+					return false;
+				};
+				if(psd2!=psd){
+					mui.toast('两次密码不同！');
+					return false;
+				};
+				var datas = {
+					phone:phone,
+					password:psd,
+					password2:psd2,
+				};
+				//注册
+				app.ajax('/register',datas,function(data){
+					mui.toast(data.msg);
+					if(data.code==1){
+						app.set_h('regcode',code);
+						mui.openWindow({
+							id : 'index',
+							url : 'index.html',
+							show : {
+								autoShow:true
+							}
+						});
 					}
-				});
+				},function(){});
+				return false;
 			});
 		</script>
 	</body>

@@ -11,17 +11,25 @@
 	    }
 	    return "http://xjms.buy23.cn/api"+a+url;
 	}
+	//返回图片地址
+	function get_img_url(){
+		return "http://xjms.buy23.cn/uploads/";
+	}
 
 var app = {
+	json_to_str:function(obj)
+    {
+        return JSON.stringify(obj);
+    },
 	set_h:function(key,data){
         if(!key) 
         {
             return;
         }
-        //console.log("设置缓存,key：",key,"data：",data);
+        //console.log("设置缓存,key：",key,"data：",data); 
         if(typeof(data)=='object') 
         {
-            data = this.json_to_str(data);
+            data = JSON.stringify(data);
         }
         if(data=='') 
         {
@@ -109,7 +117,7 @@ var app = {
 				token:app.get_h('token'),
 			},
 			beforeSend:function(){
-				app.open();
+//				app.open(1); 
 			},
 			success:function(data){
 				if(data.code==404){
@@ -134,11 +142,12 @@ var app = {
 };
 
 //转圈
-app.open = function(){
+app.open = function(type){
 	if(window.plus){
-		plusReady(); 
+		plusReady();
 	}else{ 
 		document.addEventListener('plusready', plusReady,false);
+		
 	}
 }
 
@@ -146,7 +155,7 @@ function plusReady(){
 	plus.nativeUI.showWaiting(); 
 	setTimeout( function(){
 		plus.nativeUI.closeWaiting();
-	},5000);
+	},2000);
 }
 
 

@@ -22,28 +22,28 @@
 		<div class="mui-content">
 			<div class="loan-detail-head mui-row">
 				<div class="mui-col-xs-2 img-box-respons">
-					<img src="images/detail.png" alt=""  style="height: auto;"/>
+					<img src="images/detail.png" id="logo" alt=""  style="height: auto;"/>
 				</div>
 				<div class="mui-col-xs-8 mui-text-left">
-					<font>一信贷</font>
-					<p>申请人数：<span style="color:#37BF7C;">154515人</span></p>
+					<font id="info_name">一信贷</font>
+					<p>申请人数：<span style="color:#37BF7C;" id="info_renshu">154515人</span></p>
 				</div>
 				<div class="mui-col-xs-2 mui-text-center" style="padding: 7px 0">
-					<span>95%</span>
+					<span id="info_success">95%</span>
 					<p>成功率</p>
 				</div>
 			</div>
 			<div class="mui-row loan-detail-box">
 				<div class="mui-col-xs-4">
-					<span>1000~3000</span>
+					<span id="info_fanwei">1000~3000</span>
 					<p>贷款范围（元）</p>
 				</div>
 				<div class="mui-col-xs-4">
-					<span>7日~14日</span>
+					<span id="info_qixian">7日~14日</span>
 					<p>贷款期限</p>
 				</div>
 				<div class="mui-col-xs-4">
-					<span>0.1%~0.2%</span>
+					<span id="info_rililv">0.1%~0.2%</span>
 					<p>日利率</p>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 				<div class="title">
 					审核关键
 				</div>
-				<div class="content">
+				<div class="content" id="info_shh">
 					<span class="mui-btn my-btn1">芝麻信用</span>
 					<span class="mui-btn my-btn1">电话运营商</span>
 					<span class="mui-btn my-btn1">社交数据</span>
@@ -78,7 +78,7 @@
 				<div class="title">
 					申请流程
 				</div>
-				<div class="content">
+				<div class="content" id="info_liuc">
 					<p>01、用本人实名认证的手机注册 </p>
 					<p>02、完成5步必填认证和2步可选认证</p>
 					<p>03、申请借款额度与期限</p>
@@ -91,7 +91,7 @@
 				<div class="title">
 					申请条件
 				</div>
-				<div class="content">
+				<div class="content" id="info_tiaojian">
 					<p>01、年龄：18~35周岁</p>
 					<p>02、拥有稳定的收入来源</p>
 					<p>03、无不良的信用记录</p>
@@ -101,7 +101,7 @@
 				<div class="title">
 					产品优势
 				</div>
-				<div class="content">
+				<div class="content" id="info_youshi">
 					<p>审核方式：线上自动审核</p>
 					<p>审核期限：最快30分钟</p>
 					<p>放贷时间：最快1分钟</p>
@@ -109,12 +109,70 @@
 				</div>
 			</div>
 			<div class="my-btn-block-box">
-	    		<button type="submit" class="mui-btn my-btn-block">立即申请</button>
+	    		<button type="submit" id="submit" class="mui-btn my-btn-block">立即申请</button>
 	    	</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init();
+			var url = '';
+			//添加newId自定义事件监听
+			window.addEventListener('info',function(event){
+			  	var id = event.detail.id;
+			  	var datas = {
+		  			id:id
+			  	};
+			  	app.ajax('/pinfo',datas,function(data){
+			  		if(data.code==1){
+			  			url = data.data.platform.link;
+			  			mui('#logo')[0].src = get_img_url()+data.data.platform.logo;
+			  			mui('#info_name')[0].innerHTML = data.data.platform.name;
+			  			mui('#info_renshu')[0].innerHTML = data.data.platform.number;
+			  			mui('#info_success')[0].innerHTML = data.data.platform.success;
+			  			mui('#info_fanwei')[0].innerHTML = data.data.platform.money_min+'~'+data.data.platform.money_max;
+			  			mui('#info_qixian')[0].innerHTML = data.data.platform.money_term;
+			  			mui('#info_rililv')[0].innerHTML = data.data.platform.interest;
+			  			//时候关键
+			  			var info = data.data.info;
+			  			var shh = '';
+			  			for (var i=0;i<info.shgj.length;i++) {
+			  				shh+='<span class="mui-btn my-btn1">'+info.shgj[i]["value"]+'</span>';
+			  			};
+			  			if(shh){
+			  				mui('#info_shh')[0].innerHTML = shh;
+			  			};
+			  			//申请流程
+			  			var sqlc = '';
+			  			for (var i=0;i<info.sqlc.length;i++) {
+			  				sqlc+='<p>'+info.sqlc[i]["value"]+'</p>';
+			  			};
+			  			if(sqlc){
+			  				mui('#info_liuc')[0].innerHTML = sqlc;
+			  			};
+			  			//申请条件 
+			  			var sqtj = '';
+			  			for (var i=0;i<info.sqtj.length;i++) {
+			  				sqtj+='<p>'+info.sqtj[i]["value"]+'</p>';
+			  			};
+			  			if(sqtj){
+			  				mui('#info_tiaojian')[0].innerHTML = sqtj;
+			  			};
+			  			//产品优势
+			  			var cpys = '';
+			  			for (var i=0;i<info.cpys.length;i++) {
+			  				cpys+='<p>'+info.cpys[i]["value"]+'</p>';
+			  			};
+			  			if(cpys){
+			  				mui('#info_youshi')[0].innerHTML = cpys;
+			  			};
+			  		}
+			  	});
+			});
+			
+			mui('#submit')[0].addEventListener('tap',function(){
+				mui.openWindow(url); 
+			})
 		</script>
 	</body>
 
